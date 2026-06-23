@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "axios": "^1.18.1",
+    "react-router-dom": "^7.18.0"
+  }
+}
+
+# Add proxy to package.json (after the "private": true line)
+node -e "
+const fs = require('fs');
+const pkg = JSON.parse(fs.readFileSync('frontend/package.json', 'utf8'));
+pkg.proxy = 'http://localhost:5000';
+fs.writeFileSync('frontend/package.json', JSON.stringify(pkg, null, 2));
+console.log('proxy added');
+"
